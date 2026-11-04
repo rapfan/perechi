@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151a35">
+  <meta name="description" content="Perechi! — un joc de memorie cu cartonașe, trei dificultăți și recorduri locale. Joacă și offline.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Perechi!">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./style.css">
+  <title>Perechi! — Joc de memorie</title>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main class="app">
+    <header class="topbar">
+      <div class="branding"><div class="brand-icon" aria-hidden="true">✦</div>
+        <div><div class="brand-name">Perechi<span>!</span></div><div class="brand-tagline">Antrenează-ți memoria</div></div>
+      </div>
+      <button class="icon-button install-button" id="installButton" type="button" aria-label="Instalează jocul" title="Instalează jocul">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4"/><path d="M5 17v3h14v-3"/></svg><span>Instalează</span>
+      </button>
+    </header>
+
+    <section class="intro" aria-label="Introducere">
+      <div class="eyebrow"><span class="small-dot"></span> JOC DE MEMORIE</div>
+      <h1>Găsește <em>perechile.</em><br>Depășește-ți recordul.</h1>
+      <p>Întoarce două cartonașe și găsește imaginile identice. Cât de repede le poți potrivi pe toate?</p>
+    </section>
+
+    <section class="game-panel" aria-label="Joc">
+      <div class="level-header"><div class="section-label">NIVEL DE DIFICULTATE</div><button id="soundButton" type="button" class="sound-button" aria-pressed="false"><span id="soundIcon">♪</span><span id="soundLabel">Sunet oprit</span></button></div>
+      <div class="difficulty-group" role="group" aria-label="Alege dificultatea">
+        <button class="difficulty active" type="button" data-level="easy" aria-pressed="true"><strong>Ușor</strong><small>6 perechi</small></button>
+        <button class="difficulty" type="button" data-level="medium" aria-pressed="false"><strong>Mediu</strong><small>8 perechi</small></button>
+        <button class="difficulty" type="button" data-level="hard" aria-pressed="false"><strong>Greu</strong><small>10 perechi</small></button>
+      </div>
+
+      <div class="stats" aria-label="Statistici joc">
+        <div class="stat"><span class="stat-icon">↗</span><span class="stat-caption">MUTĂRI</span><strong id="moves">0</strong></div>
+        <div class="stat"><span class="stat-icon">◷</span><span class="stat-caption">TIMP</span><strong id="timer">00:00</strong></div>
+        <div class="stat"><span class="stat-icon">★</span><span class="stat-caption">RECORD</span><strong id="best">—</strong></div>
+      </div>
+
+      <div class="progress-top"><span id="statusText" role="status" aria-live="polite">Găsește prima pereche!</span><span id="progressText">0 / 6 perechi</span></div>
+      <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="board" id="board" aria-label="Cartonașe de memorie"></div>
+
+      <div class="actions"><button class="primary-button" id="resetButton" type="button"><span aria-hidden="true">↻</span> Joc nou</button><span class="helper">Un joc nou amestecă toate cartonașele</span></div>
+    </section>
+    <footer>Fără cont • Fără reclame • Funcționează și offline</footer>
+  </main>
+
+  <div class="modal-backdrop" id="winModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+      <div class="celebration" aria-hidden="true">🏆</div>
+      <div class="eyebrow">EXCELENT!</div><h2 id="winTitle">Ai găsit toate perechile!</h2>
+      <p id="winDetail"></p><p class="new-record" id="newRecord" hidden>✦ Record nou!</p>
+      <button class="primary-button" id="playAgainButton" type="button">Joacă din nou <span aria-hidden="true">↗</span></button>
+      <button class="secondary-button" id="closeWinButton" type="button">Vezi tabla</button>
+    </section>
+  </div>
+  <div class="modal-backdrop" id="installModal" hidden>
+    <section class="modal install-modal" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+      <div class="celebration" aria-hidden="true">📱</div><h2 id="installTitle">Instalează Perechi!</h2>
+      <p id="installInstructions">Poți adăuga jocul pe ecranul principal al telefonului.</p>
+      <button class="primary-button" id="closeInstallButton" type="button">Am înțeles</button>
+    </section>
+  </div>
+</body>
+</html>
